@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #061741;
+        }
+
+        header, footer {
+            background-color: #081873;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            height: 80%;
+            background-color: #0A2A75;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            color: white;
+        }
+
+        .left-panel {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            padding: 20px;
+        }
+
+        .left-panel img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .right-panel {
+            flex: 1;
+            background-color: #0C1831;
+            padding: 40px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .right-panel h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="file"] {
+            display: none;
+        }
+
+        .form-group .custom-file-upload {
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .form-group .custom-file-upload span {
+            color: #666;
+            display: inline-block;
+            width: calc(100% - 100px);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .form-group .custom-file-upload::after {
+            content: 'Choose File';
+            display: inline-block;
+            padding: 0 10px;
+            border-left: 1px solid #ccc;
+            background-color: #83acd4;
+            color: rgb(0, 0, 0);
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submit-button {
+            width: 25%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1E90FF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RESUME ANALYZER</h1>
+    </header>
+
+    <div class="container">
+        <div class="left-panel">
+            <img src="front_page_image.jpg" alt="Resume Illustration">
+        </div>
+        <div class="right-panel">
+            <h1>Welcome!</h1>
+            <p>One step ahead towards your dream job</p>
+            <form>
+                <div class="form-group">
+                    <label for="name">Please enter your name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Please enter Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Please enter Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="dob">Please enter date of birth</label>
+                    <input type="date" id="dob" name="dob">
+                </div>
+                <div class="form-group">
+                    <label for="resume">Please upload resume</label>
+                    <label class="custom-file-upload">
+                        <span id="file-name">No file chosen</span>
+                        <input type="file" id="resume" name="resume" onchange="showFileName()">
+                    </label>
+                </div>
+                <button type="submit" class="submit-button">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Resume Analyzer Project
+    </footer>
+
+    <script>
+        function showFileName() {
+            const fileInput = document.getElementById('resume');
+            const fileNameDisplay = document.getElementById('file-name');
+            const fileName = fileInput.files.length ? fileInput.files[0].name : 'No file chosen';
+            fileNameDisplay.textContent = fileName;
+            const label = fileInput.nextElementSibling;
+            if (fileInput.files.length) {
+                label.querySelector('::after').textContent = 'Replace File';
+            } else {
+                label.querySelector('::after').textContent = 'Choose File';
+            }
+        }
+    </script>
+</body>
+</html>

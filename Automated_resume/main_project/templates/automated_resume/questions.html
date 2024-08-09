@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>MCQ Test</title>
+    <link rel="stylesheet" href="{% static 'automated_resume/questions.css' %}">
+</head>
+<body>
+    <div id="fullscreen-element" class="container">
+        <div id="timer" class="timer-text">Time left: 30 seconds</div>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'automated_resume-questions-page' %}"
+        class="unselectable" data-unselectable="unselectable content">
+            {% csrf_token %}
+            <h2 class="unselectable">{{ form.question.value }}</h2>
+            <div class="options-container">
+                {{ form.option }}
+            </div>
+            <button type="submit" class="next-btn">Next</button>
+        </form>
+    </div>
+    <script src="{% static 'automated_resume/questions.js' %}"></script>
+    <script src="{% static 'automated_resume/full_screen.js' %}"></script>
+</body>
+</html>

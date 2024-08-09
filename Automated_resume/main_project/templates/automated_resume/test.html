@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'automated_resume/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Resume Analyzer</h1>
+    </header>
+
+    <div class="container">
+        <div class="left-panel">
+            <img src="{% static 'automated_resume/hone_page_img.jpeg' %}" alt="Resume Illustration">
+        </div>
+        <div class="right-panel">
+            <h1>Welcome!</h1>
+            <p>One step ahead towards your dream job</p>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div>
+                        {{ form.name.label_tag }} {{ form.name }}
+                    </div>
+                    <div>
+                        {{ form.email.label_tag }} {{ form.email.errors }}
+                        {{ form.email }}
+                    </div>
+                    <div>
+                        {{ form.phone.label_tag }} {{ form.phone.errors }}
+                        {{ form.phone }}
+                    </div>
+                    <div>
+                        {{ form.dob.label_tag }} {{ form.dob }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.resume.label_tag }}
+                        <label id="file-label" for="id_resume" class="custom-file-upload">
+                            <span id="file-name">No file chosen</span>
+                        </label>
+                        {{ form.resume }}
+                    </div>
+                </div>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <button type="submit" class="submit-button">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Resume Analyzer Project
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('id_resume');
+            const fileNameDisplay = document.getElementById('file-name');
+
+            fileInput.addEventListener('change', function() {
+                const fileName = this.files[0].name;
+                fileNameDisplay.textContent = fileName;
+            });
+        });
+    </script>
+</body>
+</html>

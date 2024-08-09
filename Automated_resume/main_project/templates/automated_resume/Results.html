@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="{% static 'automated_resume/results.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results</h1>
+        {% if percentage < 83.0 %}
+            <div class="status-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="12" fill="#F44336"/>
+                    <path d="M7 7L17 17M17 7L7 17" stroke="white" stroke-width="2"/>
+                </svg>
+            </div>
+            <p class="status-message">You failed, please try again after 6 Months.</p>
+        {% else %}
+            <div class="status-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="12" fill="#4CAF50"/>
+                    <path d="M7 13L10 16L17 9" stroke="white" stroke-width="2"/>
+                </svg>
+            </div>
+            <p class="status-message">Nice job, you passed!</p>
+        {% endif %}
+        <div class="results">
+            <div class="result-box">
+                <p class="result-label">YOUR SCORE</p>
+                <p class="result-value">{{ percentage }}%</p>
+            </div>
+            <div class="result-box">
+                <p class="result-label">YOUR POINTS</p>
+                <p class="result-value">{{ marks }}</p>
+                <p class="result-subtext">PASSING POINTS: {{ cutoff }}</p>
+            </div>
+        </div>
+        <button class="review-button"><a href="{% url 'review_quiz' %}">Review Quiz</a></button>
+        <button class="exit-button" ><a href="{% url 'automated_resume-home' %}">Exit</a></button>
+    </div>
+</body>
+</html>

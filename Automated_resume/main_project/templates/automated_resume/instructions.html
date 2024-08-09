@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Instructions</title>
+    <link rel="stylesheet" href="{% static 'automated_resume/instructions.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quiz Instructions</h1>
+        </header>
+        <main>
+            <section class="instructions">
+                <h2>Welcome!</h2>
+                <p>Please read the following instructions carefully before starting the quiz:</p>
+                <ul>
+                    <li><strong>Time Limit:</strong> You will have 30 minutes to complete the quiz.</li>
+                    <li><strong>Number of Questions:</strong> The quiz contains 30 multiple-choice questions.</li>
+                    <li><strong>No Switching Tabs:</strong> Switching tabs or leaving the quiz page is not allowed. You will be monitored for such activities.</li>
+                    <li><strong>No External Resources:</strong> Use of external resources such as search engines, books, or notes is strictly prohibited.</li>
+                    <li><strong>Answering:</strong> Select the correct answer for each question. Once you proceed to the next question, you cannot return to the previous one.</li>
+                    <li><strong>Technical Issues:</strong> In case of technical issues, Please contact the support team immediately. Make sure your internet connection is stable.</li>
+                    <li><strong>Completion:</strong> Ensure you submit your quiz answers before the time expires. Failure to do so will result in an automatic submission of your incomplete quiz.</li>
+                </ul>
+                <p>Good luck!</p>
+            </section>
+            <section class="actions">
+                <form action="{% url 'automated_resume-success' %}" method="GET" id="quiz-form">
+                    <button type="submit" class="btn start-btn" id="oneclick">Start Quiz</button>
+                </form>
+            </section>
+
+        </main>
+    </div>
+    <script src="{% static 'automated_resume/instructions.js' %}"></script>
+</body>
+</html>
